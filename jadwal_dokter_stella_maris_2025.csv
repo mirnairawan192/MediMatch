@@ -1,0 +1,73 @@
+﻿poliklinik,nama_dokter,Senin,Selasa,Rabu,Kamis,Jumat,Sabtu,sumber_tahun
+UMUM,Dokter Jaga,09.00 - 13.00,09.00 - 13.00,09.00 - 13.00,09.00 - 13.00,09.00 - 13.00,09.00 - 13.00,2025
+INTERNA UMUM,"dr. Ardiyanto, Sp.PD",15.00 - 18.00,15.00 - 18.00,15.00 - 18.00,15.00 - 18.00,15.00 - 18.00,11.00 - 13.00,2025
+INTERNA UMUM,"dr. Effendy Hartungi, Sp.PD",,09.00 - 11.00,,09.00 - 11.00,,,2025
+INTERNA UMUM,"dr. Arman M. Singara, Sp.PD",10.00 - 13.00,,10.00 - 13.00,,10.00 - 13.00,,2025
+INTERNA UMUM,"dr. James Johanes Edenton, Sp.PD",,09.00 - 12.00,,09.00 - 12.00,,,2025
+INTERNA UMUM,"dr. Yulian Widjaja, Sp.PD",10.00 - 15.00,10.00 - 15.00,10.00 - 15.00,10.00 - 15.00,10.00 - 15.00,10.00 - 15.00,2025
+INTERNA UMUM,"dr. Jimmy Gunardi Tanzil, Sp.PD",,08:00 - 10:00,,08:00 - 10:00,,,2025
+ENDOKRIN Gastroentero Hepatologi HEMATOLOGI Kardiovaskular GINJAL,"dr. Agus Parintik Sambo, Sp.PD-KEMD",,09.00 - 14.00,,09.00 - 14.00,,09.00 - 14.00,2025
+ENDOKRIN Gastroentero Hepatologi HEMATOLOGI Kardiovaskular GINJAL,"dr. Susanto Hendra Kusuma.,Sp.PD, K-GEH, FINASIM",,,,,,13.00 - 14.00,2025
+ENDOKRIN Gastroentero Hepatologi HEMATOLOGI Kardiovaskular GINJAL,"dr. Rahmawati Minhajat, PhD.,Sp.PD.,KHOM",,12.00 - 14.00,,13.00 - 15.00,,10.00 - 14.00,2025
+ENDOKRIN Gastroentero Hepatologi HEMATOLOGI Kardiovaskular GINJAL,"dr. Pendrik Tendean, Sp.PD-KKV",,,,,,09.00 - 11.00,2025
+ENDOKRIN Gastroentero Hepatologi HEMATOLOGI Kardiovaskular GINJAL,"dr. Melda Tessy, Sp.PD - KGH",,,,,,08.00-10.00,2025
+PULMONOLOGI,"dr. Eliana Muis., Sp.PD, K-P",,,09.00 - 13.00,,09.00 - 13.00,,2025
+PARU,"dr. Pither Sandy Tulak,Sp.P",12.00 - 14.00,12.00 - 14.00,,12.00 - 14.00,,10.00 - 12.00,2025
+ANAK,"dr. David Thehumury, Sp. A",,,11.00 - 13.00,,11.00 - 13.00,,2025
+ANAK,"dr. Victor Siahaya Tjandra, Sp.A",12.30 - 14.30; 14.00 - 16.00,12.30 - 14.30; 14.00 - 16.00,12.30 - 14.30; 14.00 - 16.00,12.30 - 14.30; 14.00 - 16.00,12.30 - 14.30; 14.00 - 16.00,12.30 - 14.30,2025
+ANAK,"dr. Sylvia, Sp.A",09.00 - 15.00,09.00 - 15.00,09.00 - 15.00,09.00 - 15.00,09.00 - 15.00,09.00 - 15.00,2025
+ANAK,"dr. Ricky Saunders, Sp.A",,08.00 - 10.00,,08.00 - 10.00,,14.00 - 16.00,2025
+KIA,Dokter Anak,09.00 - 12.00,,,09.00 - 12.00,,,2025
+BEDAH UMUM,"dr. Almeida Handayani, Sp.B",09.00 - 12.00,,,09.00 - 12.00,,,2025
+BEDAH UMUM,"dr. Kipsanang Akemah, Sp. B, FINACS., FICS",10.00 - 12.00,10.00 - 12.00,10.00 - 12.00,10.00 - 12.00,10.00 - 12.00,10.00 - 12.00,2025
+BEDAH UMUM,"dr. Arie Rafael Singara , Sp.B",10.00 - 15.00,16.00 - 18.00; 10.00 - 15.00,10.00 - 15.00,16.00 - 18.00; 10.00 - 15.00,10.00 - 15.00,10.00 - 15.00,2025
+BEDAH UMUM,"dr. Oriano Yanan, M.Kes., Sp.B., FICS",16.00 - 18.00,16.00 - 18.00,16.00 - 18.00,16.00 - 18.00,16.00 - 18.00,,2025
+BEDAH UMUM,"dr. Fritzky Wandy Thedjakusuma, Sp.B",18.00 - 20.00,18.00 - 20.00,18.00 - 20.00,18.00 - 20.00,18.00 - 20.00,,2025
+BEDAH UMUM,"dr. Wilner Singarimbun, Sp.B",12.00 - 15.00,,,12.00 - 15.00,,12.00 - 15.00,2025
+ORTOPEDI & TRAUMATOLOGI,"dr. Wilhelmus Supriyadi, Sp.OT",,10.00 - 13.00,,,10.00 - 13.00,,2025
+ORTOPEDI & TRAUMATOLOGI,"dr. Herbert Yurianto, Sp.OT (K), AIFO-K",16.30 - 18.30,16.30 - 18.30,,16.30 - 18.30,16.30 - 18.30,,2025
+ORTOPEDI & TRAUMATOLOGI,"Prof. Dr. dr. Idrus A Patturusi, Sp.BO",,,,10.00 - 12.00,,10.00 - 12.00,2025
+BEDAH DIGESTIF,"dr. Ronald E Lusikoy, Sp.B - KBD",,16.00 - 18.00,16.30 - 18.30,,16.30 - 18.30,10.00 - 12.00,2025
+BEDAH SARAF,"dr. Rizha Anshori Nasution, Sp.BS",,,14.30 - 16.00,,14.30 - 16.00,,2025
+BEDAH SARAF,"dr. Wiradharma, Sp. BS",,16.06 - 18.00,,16.06 - 18.00,,,2025
+BEDAH UROLOGI,"dr. Abd. Malik Yusuf, Sp.BU",,,08.00 - 10.00,,,08.00 - 10.00,2025
+BEDAH ONKOLOGI,"dr. John Sammy Leids Alfawin Pieter, Sp. B (K) Onk",15.42 - 18.00,,,15.42 - 18.00,,10.00 - 13.00,2025
+BEDAH VASKULER,"dr. Dewi Yusuf, Sp. B., SubSpes, BVE (K)",10.00 - 12.00,10.00 - 12.00,10.00 - 12.00,,,,2025
+Bedah Thorax Kardiak dan Vaskuler,"dr. Maikel Triyudi Tappang, Sp.BTKV",,,,17.00 - 19.00,17.00 - 19.00,10.00 - 13.00,2025
+BEDAH PLASTIK,"Dr. dr. Fonny Josh, Sp.BP-REK (K) B.Mikro",09.30 - 11.00,,,09.30 - 11.00,,09.30 - 11.00,2025
+UROLOGI,"dr. Harry Achsan Chaerul, Sp.U",15.00 - 17.00,13.00 - 16.00,,13.00 - 16.00,,,2025
+TELINGA HIDUNG TENGGOROKAN - KEPALA LEHER,"Prof.Dr.dr. Abdul Qadar Punagi, Sp. THT-KL (K)",09.00 - 11.00,,,09.00 - 11.00,,,2025
+TELINGA HIDUNG TENGGOROKAN - KEPALA LEHER,"dr. Robert Widiantono, Sp. THT-KL",17.00 - 19.00,10.00 - 12.00; 17.00 - 19.00,10.00 - 12.00; 17.00 - 19.00,17.00 - 19.00,17.00 - 19.00,10.00 - 12.00,2025
+TELINGA HIDUNG TENGGOROKAN - KEPALA LEHER,"dr. Arief Limardjo, M.Kes., Sp.THT-KL",,,,,10.00 - 12.00,,2025
+TELINGA HIDUNG TENGGOROKAN - KEPALA LEHER,"dr. Indah Hamriani, M.Kes., Sp.THT-KL",,12.00 - 14.00,,,,12.00 - 14.00,2025
+SARAF,"Dr.dr. Hasmawaty Basir, Sp.N (K)",07.30 - 13.00; 16.30 - 20.30,07.30 - 13.00; 15.00 - 18.30,07.30 - 13.00; 15.00 - 18.30,07.00 - 11.00; 16.30 - 20.30,07.00 - 13.00; 15.00 - 18.30,08.00 - 14.30,2025
+SARAF,"dr. Fanny Alie, Sp.S",12.00 - 14.00,12.00 - 14.00,12.00 - 14.00,12.00 - 14.00,,,2025
+SARAF,"dr. Louis Kwandou, Sp. N (K)",,12.00 - 14.00,,,12.00 - 14.00,,2025
+SARAF,"dr. Juliana Ch. Abadi, Sp.N",,12.00 - 14.00,,,12.00 - 14.00,,2025
+SARAF,"Dr. dr. David Umbas, Sp.N (K)",09.00 - 12.00,,,09.00 - 12.00,,,2025
+MATA,"dr. Marie Adam, Sp. M",,10.00 - 12.00,,10.00 - 12.00,,,2025
+MATA,"dr. Rahasiah Taufik, Sp.M (K)",,,12.30 - 14.00,,,,2025
+MATA,"dr. Liem Meysie Kristi Harlimton., Sp.M",,,,,09.00 - 13.00,09.00 - 12.00,2025
+KULIT & KELAMIN,"dr. Dirmawati Kadir, Sp. KK",10.00 - 12.00,,,10.00 - 12.00,10.00 - 12.00,10.00 - 12.00,2025
+KULIT & KELAMIN,"dr. Helena Kendengan, Sp.KK",,12.00 - 14.00,12.00 - 14.00,,,12.00 - 14.00,2025
+PSIKIATRI,"dr. Agus Japari, Sp.KJ, M.Kes",15.00 - 17.00,,15.00 - 17.00,,15.00 - 17.00,,2025
+PSIKIATRI,"dr. Erwiani Sutono, Sp.KJ",,15.00 - 17.00,,15.00 - 17.00,,,2025
+PSIKIATRI,"dr. Dessy Natalia, Sp.KJ",09.00 - 14.00,09.00 - 14.00,,09.00 - 14.00,09.00 - 14.00,,2025
+PSIKIATRI,"dr. Sheila Sangkereng, Sp.KJ",,,12.00 - 14.00,,,09.00 - 11.00,2025
+GIGI,"Prof. Dr. drg. Sherly Horax,MS",09.00 - 11.00,09.00 - 11.00,09.00 - 11.00,09.00 - 11.00,09.00 - 11.00,09.00 - 11.00,2025
+GIGI,"drg. Angelina Marissa Jobs,MARS",11.00 - 13.00,11.00 - 13.00,11.00 - 13.00,11.00 - 13.00,11.00 - 13.00,11.00 - 13.00,2025
+KONSERVASI GIGI / ENDODONSI,"drg. Eriana Sutono, Sp.KG",,,15.00 - 17.00,,15.00 - 17.00,,2025
+KONSERVASI GIGI / ENDODONSI,"drg. Meilina Goenawan, Sp.KG",08.00 - 15.00,08.00 - 10.00; 13.30 - 17.30,07.30 - 14.30,08.00 - 15.00,08.00 - 15.00,08.00 - 15.00,2025
+ORTODONTIS,"drg. Kasmawati, Sp.Ort",,,16.00 - 18.00,,,09.30 - 12.00,2025
+BEDAH MULUT,"drg. R. Handhito Satriyo S., M.Ked.Klin., Sp.Bm",15.00 - 16.30,13.00 - 15.00,,15.00 - 16.30,,,2025
+OBSTETRI & GINEKOLOGI,"dr. Sofyan Muhaji, SP.OG",10.00 - 13.00,10.00 - 13.00,10.00 - 13.00,,,10.00 - 13.00,2025
+OBSTETRI & GINEKOLOGI,"dr. Abadi Aman, Sp.OG",,,,10.00 - 13.00,10.00 - 13.00,,2025
+OBSTETRI & GINEKOLOGI,"dr. Lucia Leonie Levita Stephanie, Sp.OG",08.00 - 15.00,08.00 - 15.00,08.00 - 15.00,08.00 - 15.00,08.00 - 15.00,08.00 - 15.00,2025
+OBSTETRI & GINEKOLOGI,"dr. Wenny Yaury, Sp.OG",,16.00 - 19.00,16.00 - 19.00,16.00 - 19.00,16.00 - 19.00,,2025
+JANTUNG & PEMBULUH DARAH,"Prof. dr. Peter Kabo, PhD, Sp.FK., Sp. JP., FIHA., FAsCC",10.00 - 13.00,,10.00 - 13.00,10.00 - 13.00,,10.00 - 12.00,2025
+JANTUNG & PEMBULUH DARAH,"dr. Rifna Febraini, Sp.JP",,17.00 - 19.00,,,17.00 - 19.00,13.00 - 15.00,2025
+ANASTESI,"Prof. Dr.dr. Muh. Ramli Ahmad,Sp.An,KMN,KAP",14.00 - 16.00,14.00 - 16.00,,,14.00 - 16.00,14.00 - 16.00,2025
+ANASTESI,"dr. Madonna Damayanthie Datu, Sp.An",,,16.30 - 18.30,,,,2025
+ANASTESI,"Dr. dr. Haizah Nurdin, Sp.An-KIC",,,,14.00 - 16.00,,,2025
+Rehabilitasi Medik,"dr. Anshory Sahlan, Sp.KFR(K).,MARS",16.00 - 18.00,16.00 - 18.00,16.00 - 18.00,16.00 - 18.00,16.00 - 18.00,14.00 - 16.00,2025
+GIZI KLINIK,"Prof.Dr.dr. Nurpudji A. Daud, MPH, Sp.GK (K)",11.00 - 13.00,,,11.00 - 13.00,16.00 - 18.00,11.00 - 13.00,2025

@@ -1,0 +1,2 @@
+﻿experiment,vector_size,dm,window,min_count,doc2vec_epochs,lstm_epochs_run,validation_accuracy,validation_macro_precision,validation_macro_recall,validation_macro_f1,test_accuracy,test_macro_precision,test_macro_recall,test_macro_f1
+Doc2Vec_150_dm0,150,0,5,1,40,27,0.7185929417610168,0.7262865889907631,0.7252568922305765,0.698638356768652,0.7049999833106995,0.6958602483085241,0.7174721116516782,0.6808802632285238

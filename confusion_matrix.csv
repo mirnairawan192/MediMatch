@@ -1,0 +1,11 @@
+﻿,cardiology,dermatology,emergency,ent,gynecology,internal_medicine,neurology,orthopedics,pediatrics,psychiatry
+cardiology,14,0,1,1,2,0,0,1,1,0
+dermatology,0,13,0,0,2,0,2,0,0,2
+emergency,1,0,1,0,2,2,11,2,2,0
+ent,0,1,0,12,2,2,0,2,1,0
+gynecology,0,0,0,0,14,2,0,0,2,0
+internal_medicine,2,1,0,1,5,12,0,0,2,2
+neurology,0,0,2,1,1,2,14,1,0,0
+orthopedics,0,1,2,0,0,1,0,17,0,0
+pediatrics,1,0,0,1,4,0,3,0,8,0
+psychiatry,1,0,0,0,0,1,0,1,2,13

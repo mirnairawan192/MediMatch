@@ -1,0 +1,478 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Daftar Dokter | MediMatch</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --dark: #193d2c;
+            --green: #638c63;
+            --soft: #eaf1e4;
+            --cream: #f8f8f2;
+            --text: #263b30;
+            --muted: #758078;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .page {
+            width: min(950px, 92%);
+            margin: auto;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 25px 0;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--dark);
+            font-size: 23px;
+            font-weight: 800;
+        }
+
+        .brand-icon {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            background: var(--green);
+            color: white;
+            border-radius: 12px;
+            font-size: 23px;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: #527354;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .back-link:hover {
+            color: var(--dark);
+        }
+
+        .heading {
+            padding: 35px 0 25px;
+        }
+
+        .eyebrow {
+            color: var(--green);
+            text-transform: uppercase;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .heading h1 {
+            color: var(--dark);
+            font-size: clamp(27px, 4vw, 38px);
+            margin-bottom: 9px;
+            overflow-wrap: anywhere;
+        }
+
+        .heading p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .doctor-count {
+            display: inline-block;
+            margin-top: 17px;
+            padding: 8px 14px;
+            border-radius: 30px;
+            background: var(--soft);
+            color: #527354;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .doctor-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .doctor-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: white;
+            border: 1px solid #e6ece3;
+            border-radius: 18px;
+            padding: 21px;
+            box-shadow: 0 5px 18px rgba(41,72,47,0.05);
+            transition: .2s;
+        }
+
+        .doctor-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 9px 22px rgba(41,72,47,0.09);
+        }
+
+        .doctor-icon {
+            width: 55px;
+            height: 55px;
+            min-width: 55px;
+            display: grid;
+            place-items: center;
+            background: var(--soft);
+            border-radius: 16px;
+            font-size: 26px;
+        }
+
+        .doctor-info h3 {
+            color: var(--dark);
+            font-size: 14px;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+        }
+
+        .doctor-info p {
+            color: var(--muted);
+            font-size: 11px;
+            margin-top: 5px;
+        }
+
+        .empty-state {
+            background: white;
+            border: 1px solid #e6ece3;
+            border-radius: 18px;
+            padding: 35px 20px;
+            text-align: center;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* CONTACT */
+
+        .contact-card {
+            background: linear-gradient(120deg, #eaf1e4, #f8faf5);
+            border: 1px solid #e1e9dc;
+            border-radius: 22px;
+            padding: 28px;
+            margin-top: 40px;
+        }
+
+        .contact-card h2 {
+            color: var(--dark);
+            font-size: 21px;
+            margin-bottom: 9px;
+        }
+
+        .contact-card > p {
+            color: #6b796e;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .contact-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 11px;
+            margin-top: 21px;
+        }
+
+        .contact-button {
+            display: inline-block;
+            text-decoration: none;
+            border-radius: 30px;
+            padding: 12px 17px;
+            font-size: 12px;
+            font-weight: 700;
+            transition: .2s;
+        }
+
+        .registration-button {
+            background: var(--green);
+            color: white;
+        }
+
+        .registration-button:hover {
+            background: var(--dark);
+        }
+
+        .website-button,
+        .whatsapp-button {
+            background: white;
+            color: var(--dark);
+            border: 1px solid #dce6d8;
+        }
+
+        .website-button:hover,
+        .whatsapp-button:hover {
+            background: var(--soft);
+        }
+
+        .phone-info {
+            margin-top: 23px;
+            padding-top: 18px;
+            border-top: 1px solid #dce6d8;
+            color: var(--dark);
+            font-size: 13px;
+        }
+
+        .phone-info p {
+            margin-top: 8px;
+            line-height: 1.8;
+        }
+
+        .phone-info a {
+            color: #527354;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .contact-note {
+            margin-top: 16px;
+            color: #879287;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            color: #8a968c;
+            font-size: 11px;
+            padding: 35px 15px 25px;
+        }
+
+        @media (max-width: 650px) {
+
+            .navbar {
+                padding: 19px 0;
+            }
+
+            .brand {
+                font-size: 20px;
+            }
+
+            .heading {
+                padding-top: 28px;
+            }
+
+            .doctor-list {
+                grid-template-columns: 1fr;
+            }
+
+            .doctor-card {
+                padding: 17px;
+            }
+
+            .contact-card {
+                padding: 21px;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+            }
+
+            .contact-button {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <nav class="navbar">
+
+        <div class="brand">
+            <div class="brand-icon">✚</div>
+            MediMatch
+        </div>
+
+        <!-- TOMBOL KEMBALI -->
+        <a href="javascript:history.back()" class="back-link">
+            ← Kembali
+        </a>
+
+    </nav>
+
+
+    <main>
+
+        <section class="heading">
+
+            <div class="eyebrow">
+                RS Stella Maris Makassar
+            </div>
+
+            <h1>{{ poliklinik }}</h1>
+
+            <p>
+                Berikut daftar dokter yang tersedia
+                pada poliklinik yang direkomendasikan.
+            </p>
+
+            <div class="doctor-count">
+                {{ doctors|length }} dokter terdaftar
+            </div>
+
+        </section>
+
+
+        {% if doctors %}
+
+        <section class="doctor-list">
+
+            {% for doctor in doctors %}
+
+            <article class="doctor-card">
+
+                <div class="doctor-icon">
+                    ⚕
+                </div>
+
+                <div class="doctor-info">
+
+                    <h3>{{ doctor }}</h3>
+
+                    <p>
+                        Dokter {{ poliklinik }}
+                    </p>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </section>
+
+        {% else %}
+
+        <section class="empty-state">
+
+            <div style="font-size: 35px; margin-bottom: 10px;">
+                ⚕
+            </div>
+
+            <strong>Informasi dokter belum tersedia.</strong>
+
+            <p>
+                Silakan hubungi RS Stella Maris Makassar
+                untuk memastikan ketersediaan dokter
+                pada poliklinik ini.
+            </p>
+
+        </section>
+
+        {% endif %}
+
+
+        <section class="contact-card">
+
+            <h2>Ingin Melakukan Pendaftaran?</h2>
+
+            <p>
+                Untuk informasi jadwal dokter dan pendaftaran,
+                silakan hubungi RS Stella Maris Makassar
+                melalui kanal resmi berikut.
+            </p>
+
+
+            <div class="contact-buttons">
+
+                <a
+                    href="{{ registration_url }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="contact-button registration-button"
+                >
+                    Pendaftaran Online →
+                </a>
+
+                <a
+                    href="https://rsstellamaris.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="contact-button website-button"
+                >
+                    Website Resmi →
+                </a>
+
+                <a
+                    href="https://wa.me/6281398888200"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="contact-button whatsapp-button"
+                >
+                    WhatsApp →
+                </a>
+
+            </div>
+
+
+            <div class="phone-info">
+
+                <strong>Call Center RS Stella Maris</strong>
+
+                <p>
+                    <a href="tel:+6281360888100">
+                        0813 60 888 100
+                    </a>
+
+                    /
+
+                    <a href="tel:+62411871391">
+                        (0411) 871391
+                    </a>
+                </p>
+
+            </div>
+
+
+            <p class="contact-note">
+                Jadwal dan ketersediaan dokter dapat berubah.
+                Silakan konfirmasi langsung kepada pihak rumah sakit
+                sebelum melakukan kunjungan.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        © 2026 MediMatch
+        <br>
+        RS Stella Maris Makassar
+    </footer>
+
+</div>
+
+</body>
+</html>
