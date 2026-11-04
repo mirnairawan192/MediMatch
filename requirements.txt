@@ -1,0 +1,11 @@
+
+Flask
+numpy
+pandas
+nltk
+torch
+transformers
+gensim
+tensorflow
+langdetect
+gunicorn
