@@ -8,4 +8,4 @@ gensim
 tensorflow
 langdetect
 gunicorn
-scikit-learn
+scikit-learn==1.9.1
