@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -76,10 +75,6 @@
             font-weight: 700;
         }
 
-        .back-link:hover {
-            color: var(--dark);
-        }
-
         .heading {
             text-align: center;
             padding: 35px 0 30px;
@@ -119,11 +114,13 @@
             gap: 10px;
         }
 
-        .complaint-box {
+        .complaint-box,
+        .translated {
             background: #f5f7f1;
             padding: 17px;
             border-radius: 13px;
             margin-bottom: 18px;
+            overflow-wrap: anywhere;
         }
 
         .small-label {
@@ -138,15 +135,6 @@
         .complaint-text {
             font-size: 14px;
             line-height: 1.7;
-            overflow-wrap: anywhere;
-        }
-
-        .translated {
-            background: #f5f7f1;
-            border-radius: 13px;
-            padding: 16px;
-            margin-bottom: 20px;
-            overflow-wrap: anywhere;
         }
 
         .translated p {
@@ -155,11 +143,14 @@
             line-height: 1.7;
         }
 
-        /* PRIMARY RECOMMENDATION */
+        .recommendation-list {
+            display: grid;
+            gap: 22px;
+        }
 
         .primary-card {
             display: grid;
-            grid-template-columns: 150px minmax(0, 1fr) minmax(0, 1fr);
+            grid-template-columns: 100px minmax(0, 1fr) minmax(0, 1fr);
             align-items: center;
             gap: 25px;
             background: linear-gradient(120deg, #f1f5e9, #ffffff);
@@ -170,14 +161,14 @@
         }
 
         .specialty-icon {
-            width: 120px;
-            height: 105px;
+            width: 90px;
+            height: 90px;
             background: #e5edda;
             border-radius: 20px;
             display: grid;
             place-items: center;
             color: #456a45;
-            font-size: 47px;
+            font-size: 38px;
         }
 
         .primary-info {
@@ -193,31 +184,45 @@
             overflow-wrap: anywhere;
         }
 
-        .main-badge {
+        .recommendation-number {
             display: inline-block;
-            background: #f6efcf;
-            color: #826629;
+            margin-bottom: 12px;
+            padding: 7px 12px;
             border-radius: 30px;
-            padding: 8px 13px;
+            background: #eaf1e4;
+            color: #55745a;
             font-size: 11px;
-            font-weight: 700;
+            font-weight: 800;
         }
 
-        .reason {
-            border-left: 1px solid #d9e2d5;
-            padding-left: 25px;
-        }
-
-        .reason h4 {
-            color: var(--dark);
-            margin-bottom: 8px;
-            font-size: 15px;
-        }
-
-        .reason p {
-            font-size: 13px;
-            color: #66756a;
+        .complaint-origin {
+            background: #f5f7f1;
+            border-radius: 12px;
+            padding: 13px 15px;
+            margin-bottom: 15px;
             line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+
+        .complaint-origin strong {
+            display: block;
+            color: #718477;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: .6px;
+            margin-bottom: 4px;
+        }
+
+        .complaint-origin p {
+            font-size: 13px;
+        }
+
+        .translation-note {
+            color: #637568;
+            font-size: 12px;
+            line-height: 1.6;
+            margin-top: 8px;
+            overflow-wrap: anywhere;
         }
 
         .polyclinic-box {
@@ -262,108 +267,22 @@
             font-size: 12px;
         }
 
-        /* ALTERNATIVE RECOMMENDATIONS */
-
-        .alternatives {
-            margin-top: 35px;
-            width: 100%;
-        }
-
-        .alternative-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 22px;
-            width: 100%;
-        }
-
-        /* SAME STRUCTURE AS PRIMARY CARD */
-
-        .alternative-card {
-            display: grid;
-            grid-template-columns: 150px minmax(0, 1fr) minmax(0, 1fr);
-            align-items: center;
-            gap: 25px;
-            width: 100%;
-            min-width: 0;
-            padding: 24px;
-            background: linear-gradient(120deg, #f1f5e9, #ffffff);
-            border: 1px solid #e5ecdf;
-            border-radius: 20px;
-            transition: .2s;
-        }
-
-        .alternative-card:hover {
-            border-color: #b8cbb2;
-            box-shadow: 0 8px 25px rgba(41,72,47,0.07);
-        }
-
-        .alternative-icon {
-            width: 120px;
-            height: 105px;
-            background: #e5edda;
-            border-radius: 20px;
-            display: grid;
-            place-items: center;
-            color: #456a45;
-            font-size: 47px;
-        }
-
-        .alternative-info {
-            min-width: 0;
-        }
-
-        .alternative-info h3 {
-            color: var(--dark);
-            font-size: 22px;
-            line-height: 1.35;
-            margin-bottom: 12px;
-            text-transform: capitalize;
-            overflow-wrap: anywhere;
-        }
-
-        .alternative-label {
-            color: #718477;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .6px;
-            margin-bottom: 10px;
-        }
-
-        .alternative-badge {
-            display: inline-block;
-            background: #eaf1e4;
-            color: #55745a;
-            border-radius: 30px;
-            padding: 8px 13px;
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        .alternative-reason {
+        .reason {
             border-left: 1px solid #d9e2d5;
             padding-left: 25px;
         }
 
-        .alternative-reason h4 {
+        .reason h4 {
             color: var(--dark);
             margin-bottom: 8px;
             font-size: 15px;
         }
 
-        .alternative-reason p {
+        .reason p {
             font-size: 13px;
             color: #66756a;
             line-height: 1.7;
         }
-
-        .alternative-confidence {
-            margin-top: 13px;
-            color: #6d796f;
-            font-size: 12px;
-        }
-
-        /* SPECIAL STATES */
 
         .state-box {
             border-radius: 17px;
@@ -376,12 +295,6 @@
             background: #fff0ed;
             border: 1px solid #f1d0c9;
             color: #853b30;
-        }
-
-        .out-of-scope {
-            background: #f4effa;
-            border: 1px solid #e2d6f0;
-            color: #594574;
         }
 
         .unmapped {
@@ -438,33 +351,26 @@
             padding: 20px;
         }
 
-        /* RESPONSIVE */
-
         @media (max-width: 850px) {
-
-            .primary-card,
-            .alternative-card {
-                grid-template-columns: 100px minmax(0, 1fr);
+            .primary-card {
+                grid-template-columns: 80px minmax(0, 1fr);
             }
 
-            .specialty-icon,
-            .alternative-icon {
-                width: 90px;
-                height: 90px;
-                font-size: 38px;
-            }
-
-            .reason,
-            .alternative-reason {
+            .reason {
                 grid-column: 1 / -1;
                 border-left: none;
                 border-top: 1px solid #d9e2d5;
                 padding: 18px 0 0;
             }
+
+            .specialty-icon {
+                width: 75px;
+                height: 75px;
+                font-size: 34px;
+            }
         }
 
         @media (max-width: 700px) {
-
             .navbar {
                 padding: 19px 0;
             }
@@ -486,27 +392,13 @@
                 border-radius: 18px;
             }
 
-            .primary-card,
-            .alternative-card {
+            .primary-card {
                 grid-template-columns: 1fr;
                 gap: 17px;
                 padding: 20px;
             }
 
-            .specialty-icon,
-            .alternative-icon {
-                width: 75px;
-                height: 75px;
-                font-size: 34px;
-            }
-
-            .primary-info h3,
-            .alternative-info h3 {
-                font-size: 20px;
-            }
-
-            .reason,
-            .alternative-reason {
+            .reason {
                 grid-column: auto;
                 border-left: none;
                 border-top: 1px solid #d9e2d5;
@@ -519,7 +411,6 @@
         }
 
         @media (max-width: 380px) {
-
             .back-link {
                 font-size: 11px;
             }
@@ -536,7 +427,6 @@
 <div class="page">
 
     <nav class="navbar">
-
         <div class="brand">
             <div class="brand-icon">✚</div>
             MediMatch
@@ -545,20 +435,12 @@
         <a href="{{ url_for('index') }}" class="back-link">
             ← Kembali ke Beranda
         </a>
-
     </nav>
 
-
     <header class="heading">
-
         <h1>Hasil Rekomendasi</h1>
-
-        <p>
-            Berikut hasil pemrosesan keluhan Anda oleh MediMatch.
-        </p>
-
+        <p>Berikut hasil pemrosesan setiap keluhan Anda oleh MediMatch.</p>
     </header>
-
 
     <main class="content">
 
@@ -569,7 +451,6 @@
             </h2>
 
             <div class="complaint-box">
-
                 <div class="small-label">
                     Keluhan yang dimasukkan
                 </div>
@@ -577,24 +458,17 @@
                 <p class="complaint-text">
                     {{ complaint }}
                 </p>
-
             </div>
 
-
             {% if translated_complaint %}
-
             <div class="translated">
-
                 <div class="small-label">
                     Hasil terjemahan ke Bahasa Inggris
                 </div>
 
                 <p>{{ translated_complaint }}</p>
-
             </div>
-
             {% endif %}
-
 
             {% if error %}
 
@@ -603,50 +477,18 @@
                     <p>{{ error }}</p>
                 </div>
 
-
             {% elif result %}
 
-
-                {% if result.type == "out_of_scope" %}
-
-                    <h2 class="section-heading">
-                        Keluhan di Luar Cakupan Sistem
-                    </h2>
-
-                    <div class="state-box out-of-scope">
-
-                        <p>
-                            Keluhan tersebut berada di luar cakupan
-                            rekomendasi sistem.
-                        </p>
-
-                        <p>
-                            Silakan menghubungi RS Stella Maris Makassar
-                            untuk mendapatkan informasi layanan yang sesuai.
-                        </p>
-
-                        <br>
-
-                        <strong>Call Center:</strong>
-                        0813 60 888 100 / 0411-871391
-
-                        <br>
-
-                        <strong>WhatsApp:</strong>
-                        0813 98 888 200
-
-                    </div>
-
-
-                {% elif result.type == "emergency" %}
+                {% if result.type == "emergency" %}
 
                     <h2 class="section-heading">
                         ⚠ Perhatian: Kategori Emergency
                     </h2>
 
                     <div class="state-box emergency">
-
-                        <strong>Keluhan diklasifikasikan ke kategori emergency.</strong>
+                        <strong>
+                            Keluhan diklasifikasikan ke kategori emergency.
+                        </strong>
 
                         <p>
                             Sistem tidak memberikan rekomendasi poliklinik
@@ -657,148 +499,57 @@
                             Jika mengalami gejala berat atau kondisi darurat,
                             segera cari pertolongan medis di IGD.
                         </p>
-
                     </div>
 
-
-                {% elif result.type == "normal" or result.type == "unmapped" %}
-
-                    {% if result.recommendations %}
+                {% else %}
 
                     <h2 class="section-heading">
-                        ✧ Rekomendasi untuk Anda
+                        ✧ Rekomendasi untuk Setiap Keluhan
                     </h2>
 
+                    <div class="recommendation-list">
 
-                    {% set primary = result.recommendations[0] %}
+                        {% for recommendation in result.recommendations %}
 
-                    <!-- PRIMARY RECOMMENDATION -->
+                        <article class="primary-card">
 
-                    <div class="primary-card">
-
-                        <div class="specialty-icon">
-                            ⚕
-                        </div>
-
-
-                        <div class="primary-info">
-
-                            <div class="small-label">
-                                Rekomendasi utama
+                            <div class="specialty-icon">
+                                ⚕
                             </div>
 
-                            <h3>
-                                {{ primary.specialty
-                                   | replace("_", " ")
-                                   | title }}
-                            </h3>
+                            <div class="primary-info">
 
-                            <span class="main-badge">
-                                ♛ Rekomendasi Utama
-                            </span>
+                                <span class="recommendation-number">
+                                    Keluhan {{ loop.index }}
+                                </span>
 
-                            {% if primary.status == "normal" and primary.poliklinik %}
+                                <div class="complaint-origin">
 
-                            <div class="polyclinic-box">
+                                    <strong>Keluhan pasien</strong>
 
-                                <p>Poliklinik RS Stella Maris</p>
+                                    <p>
+                                        {{ recommendation.complaint }}
+                                    </p>
 
-                                <h4>{{ primary.poliklinik }}</h4>
-
-                                <a
-                                    href="{{ url_for('dokter', poliklinik=primary.poliklinik) }}"
-                                    class="doctor-button"
-                                >
-                                    Lihat Daftar Dokter →
-                                </a>
-
-                            </div>
-
-                            {% else %}
-
-                            <div class="unmapped">
-                                Mapping poliklinik untuk spesialisasi
-                                ini belum tersedia.
-                            </div>
-
-                            {% endif %}
-
-
-                            {% if primary.confidence is not none %}
-
-                            <p class="confidence">
-                                Skor keluaran model:
-                                <strong>
-                                    {{ "%.2f"|format(primary.confidence) }}%
-                                </strong>
-                            </p>
-
-                            {% else %}
-
-                            <p class="confidence">
-                                Rekomendasi berbasis aturan gejala,
-                                bukan probabilitas model.
-                            </p>
-
-                            {% endif %}
-
-                        </div>
-
-
-                        <div class="reason">
-
-                            <h4>ⓘ Alasan Rekomendasi</h4>
-
-                            <p>
-                                Rekomendasi ini dihasilkan berdasarkan
-                                pemrosesan keluhan yang Anda masukkan
-                                oleh sistem MediMatch.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- ALTERNATIVE RECOMMENDATIONS -->
-
-                    {% if result.recommendations|length > 1 %}
-
-                    <div class="alternatives">
-
-                        <h2 class="section-heading">
-                            ⚕ Alternatif Spesialis Lain
-                        </h2>
-
-                        <div class="alternative-grid">
-
-                            {% for recommendation in result.recommendations[1:] %}
-
-                            <div class="alternative-card">
-
-                                <div class="alternative-icon">
-                                    ⚕
-                                </div>
-
-
-                                <div class="alternative-info">
-
-                                    <div class="alternative-label">
-                                        Rekomendasi alternatif
+                                    <div class="translation-note">
+                                        <strong>Terjemahan:</strong>
+                                        {{ recommendation.translated_complaint }}
                                     </div>
 
-                                    <h3>
-                                        {{ recommendation.specialty
-                                           | replace("_", " ")
-                                           | title }}
-                                    </h3>
+                                </div>
 
-                                    <span class="alternative-badge">
-                                        ✧ Rekomendasi Alternatif
-                                    </span>
+                                <div class="small-label">
+                                    Rekomendasi spesialisasi
+                                </div>
 
+                                <h3>
+                                    {{ recommendation.specialty
+                                       | replace("_", " ")
+                                       | title }}
+                                </h3>
 
-                                    {% if recommendation.status == "normal" and recommendation.poliklinik %}
+                                {% if recommendation.status == "normal"
+                                      and recommendation.poliklinik %}
 
                                     <div class="polyclinic-box">
 
@@ -811,7 +562,10 @@
                                         </h4>
 
                                         <a
-                                            href="{{ url_for('dokter', poliklinik=recommendation.poliklinik) }}"
+                                            href="{{ url_for(
+                                                'dokter',
+                                                poliklinik=recommendation.poliklinik
+                                            ) }}"
                                             class="doctor-button"
                                         >
                                             Lihat Daftar Dokter →
@@ -819,65 +573,71 @@
 
                                     </div>
 
-                                    {% else %}
+                                {% else %}
 
                                     <div class="unmapped">
                                         Mapping poliklinik untuk spesialisasi
-                                        ini belum tersedia.
+                                        ini belum tersedia. Silakan periksa
+                                        mapping_speciality.csv.
                                     </div>
 
-                                    {% endif %}
+                                {% endif %}
 
+                                {% if recommendation.confidence is not none %}
 
-                                    {% if recommendation.confidence is not none %}
-
-                                    <p class="alternative-confidence">
+                                    <p class="confidence">
                                         Skor keluaran model:
                                         <strong>
-                                            {{ "%.2f"|format(recommendation.confidence) }}%
+                                            {{ "%.2f"|format(
+                                                recommendation.confidence
+                                            ) }}%
                                         </strong>
                                     </p>
 
-                                    {% else %}
+                                {% else %}
 
-                                    <p class="alternative-confidence">
-                                        Rekomendasi berbasis aturan gejala.
+                                    <p class="confidence">
+                                        Rekomendasi berbasis aturan kata kunci,
+                                        bukan probabilitas model.
                                     </p>
 
-                                    {% endif %}
-
-                                </div>
-
-
-                                <div class="alternative-reason">
-
-                                    <h4>ⓘ Alasan Rekomendasi</h4>
-
-                                    <p>
-                                        Spesialisasi ini merupakan salah satu
-                                        alternatif yang dihasilkan berdasarkan
-                                        pemrosesan keluhan yang Anda masukkan
-                                        oleh sistem MediMatch.
-                                    </p>
-
-                                </div>
+                                {% endif %}
 
                             </div>
 
-                            {% endfor %}
+                            <div class="reason">
 
-                        </div>
+                                <h4>
+                                    ⓘ Alasan Rekomendasi
+                                </h4>
+
+                                <p>
+                                    Spesialisasi ini diproses secara terpisah
+                                    berdasarkan keluhan yang tercantum pada
+                                    kartu ini.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+                        {% endfor %}
 
                     </div>
 
-                    {% endif %}
+                    {% if result.emergency_detected %}
+
+                    <div class="state-box emergency" style="margin-top:20px;">
+                        Salah satu keluhan terdeteksi sebagai kategori
+                        emergency oleh model. Jika gejala berat atau
+                        memburuk, segera cari pertolongan medis di IGD.
+                    </div>
 
                     {% endif %}
 
                 {% endif %}
 
             {% endif %}
-
 
             <div class="disclaimer">
                 ⓘ Hasil rekomendasi bersifat informatif dan tidak
@@ -887,17 +647,13 @@
 
         </section>
 
-
         <div class="actions">
-
             <a href="{{ url_for('index') }}" class="new-search">
                 ← Coba Keluhan Lain
             </a>
-
         </div>
 
     </main>
-
 
     <footer>
         © 2026 MediMatch · RS Stella Maris Makassar
