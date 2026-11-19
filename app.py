@@ -1,3 +1,4 @@
+
 import os
 import re
 import pickle
@@ -31,6 +32,11 @@ LSTM_PATH = os.path.join(BASE_DIR, "lstm_model_150_dm0.keras")
 ENCODER_PATH = os.path.join(BASE_DIR, "label_encoder_150_dm0.pkl")
 MAPPING_PATH = os.path.join(BASE_DIR, "mapping_speciality.csv")
 DOCTORS_PATH = os.path.join(BASE_DIR, "jadwal_dokter_stella_maris_2025.csv")
+
+TRANSLATION_MODEL = "Helsinki-NLP/opus-mt-id-en"
+
+translator_tokenizer = None
+translator_model = None
 
 
 # =========================================================
@@ -73,7 +79,9 @@ if lstm_model.input_shape[-1] != 150:
     raise ValueError("Ukuran input LSTM tidak sesuai.")
 
 if lstm_model.output_shape[-1] != len(label_encoder.classes_):
-    raise ValueError("Jumlah output LSTM tidak sesuai dengan Label Encoder.")
+    raise ValueError(
+        "Jumlah output LSTM tidak sesuai dengan Label Encoder."
+    )
 
 print("Model berhasil dimuat.")
 print("Jumlah kelas:", len(label_encoder.classes_))
@@ -167,7 +175,6 @@ def normalize_polyclinic(name):
 
 
 def get_doctors_by_polyclinic(polyclinic):
-
     target = normalize_polyclinic(polyclinic)
 
     filtered = doctors_df[
@@ -198,23 +205,14 @@ except LookupError:
 # 7. TRANSLATION MODEL
 # =========================================================
 
-TRANSLATION_MODEL = "Helsinki-NLP/opus-mt-id-en"
-
-translator_tokenizer = None
-translator_model = None
-
-
 def load_translation_model():
-
     global translator_tokenizer
     global translator_model
 
     if translator_model is None:
-
         print("Memuat model penerjemah...")
 
         import torch
-
         from transformers import (
             AutoTokenizer,
             AutoModelForSeq2SeqLM
@@ -238,17 +236,14 @@ def load_translation_model():
 
 
 def detect_complaint_language(text):
-
     try:
         return detect(text)
-
     except LangDetectException:
         return "unknown"
 
 
 @lru_cache(maxsize=256)
 def translate_to_english(text):
-
     text = str(text).strip()
 
     if not text:
@@ -256,7 +251,7 @@ def translate_to_english(text):
 
     language = detect_complaint_language(text)
 
-    # Jika input sudah bahasa Inggris, jangan diterjemahkan ulang.
+    # Input bahasa Inggris tidak diterjemahkan ulang.
     if language == "en":
         return text
 
@@ -272,7 +267,6 @@ def translate_to_english(text):
     )
 
     with torch.no_grad():
-
         outputs = model.generate(
             **inputs,
             num_beams=5,
@@ -298,7 +292,6 @@ def translate_to_english(text):
 # =========================================================
 
 def preprocess_text(text):
-
     text = re.sub(
         r"[^\w\s]",
         " ",
@@ -307,7 +300,6 @@ def preprocess_text(text):
 
     try:
         tokens = word_tokenize(text)
-
     except LookupError:
         tokens = text.split()
 
@@ -324,7 +316,6 @@ def preprocess_text(text):
 # =========================================================
 
 def split_complaints(complaint):
-
     complaint = str(complaint).strip()
 
     if not complaint:
@@ -337,7 +328,8 @@ def split_complaints(complaint):
         complaint
     )
 
-    # Pisahkan kalimat yang diakhiri tanda titik.
+    # Pisahkan kalimat yang diakhiri tanda titik,
+    # tanda tanya, atau tanda seru.
     complaint = re.sub(
         r"\s+[.!?]\s*",
         "|",
@@ -359,22 +351,20 @@ def split_complaints(complaint):
     valid_parts = []
 
     for part in parts:
-
         subparts = part.split("|")
 
         for subpart in subparts:
-
             subpart = subpart.strip(" ,.-")
 
             if subpart and preprocess_text(subpart):
                 valid_parts.append(subpart)
 
-    # Hapus keluhan identik tanpa menghapus spesialisasi yang sama.
+    # Hapus keluhan identik, tetapi jangan menghapus
+    # spesialisasi yang sama dari keluhan berbeda.
     cleaned_parts = []
     seen = set()
 
     for part in valid_parts:
-
         key = re.sub(r"\s+", " ", part.lower())
 
         if key not in seen:
@@ -389,7 +379,6 @@ def split_complaints(complaint):
 # =========================================================
 
 def detect_specialty_override(complaint):
-
     complaint = str(complaint).lower()
 
     eye_keywords = [
@@ -445,7 +434,6 @@ def detect_specialty_override(complaint):
         re.search(pattern, complaint)
         for pattern in dental_keywords
     ):
-
         return {
             "specialty": "dentistry",
             "poliklinik": "GIGI"
@@ -455,7 +443,6 @@ def detect_specialty_override(complaint):
         re.search(pattern, complaint)
         for pattern in eye_keywords
     ):
-
         return {
             "specialty": "ophthalmology",
             "poliklinik": "MATA"
@@ -469,7 +456,6 @@ def detect_specialty_override(complaint):
 # =========================================================
 
 def predict_one_complaint(complaint, translated_complaint):
-
     tokens = preprocess_text(translated_complaint)
 
     if not tokens:
@@ -525,7 +511,6 @@ def predict_one_complaint(complaint, translated_complaint):
 # =========================================================
 
 def map_recommendation(recommendation):
-
     specialty = recommendation["specialty"]
 
     poliklinik = specialty_mapping.get(
@@ -537,7 +522,6 @@ def map_recommendation(recommendation):
         not poliklinik
         or poliklinik.strip().upper() == "PENDING"
     ):
-
         return {
             **recommendation,
             "poliklinik": None,
@@ -556,7 +540,6 @@ def map_recommendation(recommendation):
 # =========================================================
 
 def process_all_complaints(complaint):
-
     complaint_parts = split_complaints(complaint)
 
     recommendations = []
@@ -566,7 +549,6 @@ def process_all_complaints(complaint):
     print("\n========== MULTI COMPLAINT PROCESSING ==========")
 
     for index, part in enumerate(complaint_parts, start=1):
-
         print(f"\nKeluhan {index}: {part}")
 
         # Terjemahkan setiap keluhan secara terpisah.
@@ -583,7 +565,6 @@ def process_all_complaints(complaint):
         )
 
         if override:
-
             recommendation = {
                 "specialty": override["specialty"],
                 "confidence": None,
@@ -595,7 +576,6 @@ def process_all_complaints(complaint):
             }
 
         else:
-
             prediction = predict_one_complaint(
                 part,
                 translated
@@ -608,7 +588,6 @@ def process_all_complaints(complaint):
             recommendation["method"] = "Doc2Vec + LSTM"
 
             if recommendation["specialty"] == "emergency":
-
                 emergency_predictions.append(recommendation)
                 continue
 
@@ -623,18 +602,15 @@ def process_all_complaints(complaint):
         )
 
     if not recommendations and emergency_predictions:
-
         result_type = "emergency"
 
     elif any(
         item["status"] == "unmapped"
         for item in recommendations
     ):
-
         result_type = "unmapped"
 
     else:
-
         result_type = "normal"
 
     return {
@@ -652,7 +628,6 @@ def process_all_complaints(complaint):
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-
     if request.method == "GET":
         return render_template("index.html")
 
@@ -662,7 +637,6 @@ def index():
     ).strip()
 
     if not complaint:
-
         return render_template(
             "result.html",
             result=None,
@@ -672,7 +646,6 @@ def index():
         )
 
     try:
-
         result = process_all_complaints(complaint)
 
         translated_complaint = " | ".join(
@@ -680,19 +653,16 @@ def index():
         )
 
         if result["type"] == "emergency":
-
             result["specialty"] = "emergency"
             result["poliklinik"] = None
 
         elif result["recommendations"]:
-
             first_recommendation = result["recommendations"][0]
 
             result["specialty"] = first_recommendation["specialty"]
             result["poliklinik"] = first_recommendation["poliklinik"]
 
         else:
-
             raise ValueError(
                 "Tidak ditemukan rekomendasi spesialisasi."
             )
@@ -713,7 +683,6 @@ def index():
         )
 
     except Exception as error:
-
         app.logger.exception(
             "Terjadi kesalahan saat memproses keluhan."
         )
@@ -737,7 +706,6 @@ def index():
 
 @app.route("/dokter", methods=["GET"])
 def dokter():
-
     poliklinik = request.args.get(
         "poliklinik",
         ""
@@ -769,9 +737,10 @@ def dokter():
 # =========================================================
 
 if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
 
     app.run(
-        debug=True,
-        host="127.0.0.1",
-        port=5000
+        host="0.0.0.0",
+        port=port,
+        debug=False
     )
