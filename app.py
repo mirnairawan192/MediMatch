@@ -1,8 +1,20 @@
 
 import os
+
+# Hindari Transformers menginisialisasi backend TensorFlow/Flax.
+# TensorFlow tetap digunakan langsung untuk model LSTM.
+os.environ["USE_TF"] = "0"
+os.environ["USE_FLAX"] = "0"
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
+
 import re
 import pickle
 from functools import lru_cache
+
+import torch
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+
+torch.set_num_threads(1)
 
 import numpy as np
 import pandas as pd
@@ -25,6 +37,7 @@ from langdetect import detect, LangDetectException, DetectorFactory
 DetectorFactory.seed = 0
 
 app = Flask(__name__)
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DOC2VEC_PATH = os.path.join(BASE_DIR, "doc2vec_model_150_dm0.model")
@@ -212,14 +225,6 @@ def load_translation_model():
     if translator_model is None:
         print("Memuat model penerjemah...")
 
-        import torch
-        from transformers import (
-            AutoTokenizer,
-            AutoModelForSeq2SeqLM
-        )
-
-        torch.set_num_threads(1)
-
         translator_tokenizer = AutoTokenizer.from_pretrained(
             TRANSLATION_MODEL
         )
@@ -256,8 +261,6 @@ def translate_to_english(text):
         return text
 
     tokenizer, model = load_translation_model()
-
-    import torch
 
     inputs = tokenizer(
         text,
@@ -628,6 +631,7 @@ def process_all_complaints(complaint):
 
 @app.route("/", methods=["GET", "POST"])
 def index():
+
     if request.method == "GET":
         return render_template("index.html")
 
@@ -706,6 +710,7 @@ def index():
 
 @app.route("/dokter", methods=["GET"])
 def dokter():
+
     poliklinik = request.args.get(
         "poliklinik",
         ""
