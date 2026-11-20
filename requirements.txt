@@ -2,10 +2,10 @@ Flask
 numpy
 pandas
 nltk
-torch
-transformers
+torch==2.14.1
+transformers==5.19.0
 gensim
-tensorflow
+tensorflow==2.21.0
 langdetect
 gunicorn
 scikit-learn==1.9.1
