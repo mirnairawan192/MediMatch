@@ -225,7 +225,6 @@ def load_translation_model():
     if translator_model is None:
         print("Memuat model penerjemah...")
 
-        # Tokenizer dan model khusus arsitektur Marian.
         translator_tokenizer = MarianTokenizer.from_pretrained(
             TRANSLATION_MODEL
         )
@@ -248,7 +247,7 @@ def detect_complaint_language(text):
         return "unknown"
 
 
-@lru_cache(maxsize=256)
+@lru_cache(maxsize=128)
 def translate_to_english(text):
     text = str(text).strip()
 
@@ -267,14 +266,14 @@ def translate_to_english(text):
         text,
         return_tensors="pt",
         truncation=True,
-        max_length=256
+        max_length=128
     )
 
-    with torch.no_grad():
+    with torch.inference_mode():
         outputs = model.generate(
             **inputs,
-            num_beams=5,
-            max_new_tokens=128,
+            num_beams=2,
+            max_new_tokens=64,
             early_stopping=True
         )
 
@@ -332,8 +331,7 @@ def split_complaints(complaint):
         complaint
     )
 
-    # Pisahkan kalimat yang diakhiri tanda titik,
-    # tanda tanya, atau tanda seru.
+    # Pisahkan kalimat berdasarkan tanda baca.
     complaint = re.sub(
         r"\s+[.!?]\s*",
         "|",
