@@ -12,7 +12,7 @@ import pickle
 from functools import lru_cache
 
 import torch
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+from transformers import MarianTokenizer, MarianMTModel
 
 torch.set_num_threads(1)
 
@@ -225,11 +225,12 @@ def load_translation_model():
     if translator_model is None:
         print("Memuat model penerjemah...")
 
-        translator_tokenizer = AutoTokenizer.from_pretrained(
+        # Tokenizer dan model khusus arsitektur Marian.
+        translator_tokenizer = MarianTokenizer.from_pretrained(
             TRANSLATION_MODEL
         )
 
-        translator_model = AutoModelForSeq2SeqLM.from_pretrained(
+        translator_model = MarianMTModel.from_pretrained(
             TRANSLATION_MODEL
         )
 
