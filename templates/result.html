@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -135,12 +136,14 @@
         .complaint-text {
             font-size: 14px;
             line-height: 1.7;
+            white-space: pre-line;
         }
 
         .translated p {
             color: #526158;
             font-size: 13px;
             line-height: 1.7;
+            overflow-wrap: anywhere;
         }
 
         .recommendation-list {
@@ -160,6 +163,11 @@
             width: 100%;
         }
 
+        .primary-card.emergency-card {
+            background: linear-gradient(120deg, #fff4f0, #ffffff);
+            border-color: #f1d0c9;
+        }
+
         .specialty-icon {
             width: 90px;
             height: 90px;
@@ -169,6 +177,11 @@
             place-items: center;
             color: #456a45;
             font-size: 38px;
+        }
+
+        .emergency-card .specialty-icon {
+            background: #ffe3dc;
+            color: #a34638;
         }
 
         .primary-info {
@@ -182,6 +195,10 @@
             margin-bottom: 12px;
             text-transform: capitalize;
             overflow-wrap: anywhere;
+        }
+
+        .emergency-card .primary-info h3 {
+            color: #a34638;
         }
 
         .recommendation-number {
@@ -265,6 +282,7 @@
             margin-top: 13px;
             color: #6d796f;
             font-size: 12px;
+            line-height: 1.6;
         }
 
         .reason {
@@ -295,6 +313,11 @@
             background: #fff0ed;
             border: 1px solid #f1d0c9;
             color: #853b30;
+        }
+
+        .emergency h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
         }
 
         .unmapped {
@@ -455,20 +478,8 @@
                     Keluhan yang dimasukkan
                 </div>
 
-                <p class="complaint-text">
-                    {{ complaint }}
-                </p>
+                <p class="complaint-text">{{ complaint }}</p>
             </div>
-
-            {% if translated_complaint %}
-            <div class="translated">
-                <div class="small-label">
-                    Hasil terjemahan ke Bahasa Inggris
-                </div>
-
-                <p>{{ translated_complaint }}</p>
-            </div>
-            {% endif %}
 
             {% if error %}
 
@@ -479,7 +490,188 @@
 
             {% elif result %}
 
-                {% if result.type == "emergency" %}
+                {% if result.recommendations %}
+
+                    <h2 class="section-heading">
+                        ✧ Rekomendasi untuk Setiap Keluhan
+                    </h2>
+
+                    <div class="recommendation-list">
+
+                        {% for recommendation in result.recommendations %}
+
+                            {% set is_emergency = (
+                                recommendation.status == "emergency"
+                                or recommendation.specialty == "emergency"
+                            ) %}
+
+                            <article class="primary-card {% if is_emergency %}emergency-card{% endif %}">
+
+                                <div class="specialty-icon">
+                                    {% if is_emergency %}
+                                        ⚠
+                                    {% else %}
+                                        ⚕
+                                    {% endif %}
+                                </div>
+
+                                <div class="primary-info">
+
+                                    <span class="recommendation-number">
+                                        Keluhan {{ loop.index }}
+                                    </span>
+
+                                    <div class="complaint-origin">
+
+                                        <strong>Keluhan pasien</strong>
+
+                                        <p>
+                                            {{ recommendation.complaint }}
+                                        </p>
+
+                                        {% if recommendation.translated_complaint %}
+                                            <div class="translation-note">
+                                                <strong>Terjemahan:</strong>
+                                                {{ recommendation.translated_complaint }}
+                                            </div>
+                                        {% endif %}
+
+                                    </div>
+
+                                    {% if is_emergency %}
+
+                                        <div class="small-label">
+                                            Kategori hasil
+                                        </div>
+
+                                        <h3>Emergency</h3>
+
+                                        <div class="state-box emergency" style="margin-top:15px;">
+                                            <h4>⚠ Perhatian: Kategori Emergency</h4>
+
+                                            <p>
+                                                Keluhan ini diklasifikasikan
+                                                ke kategori emergency.
+                                                Sistem tidak memberikan
+                                                rekomendasi poliklinik spesialis
+                                                untuk kategori ini.
+                                            </p>
+
+                                            <p style="margin-top:10px;">
+                                                Jika mengalami gejala berat
+                                                atau kondisi darurat, segera
+                                                cari pertolongan medis di IGD.
+                                            </p>
+                                        </div>
+
+                                    {% else %}
+
+                                        <div class="small-label">
+                                            Rekomendasi spesialisasi
+                                        </div>
+
+                                        <h3>
+                                            {{ recommendation.specialty
+                                                | replace("_", " ")
+                                                | title }}
+                                        </h3>
+
+                                        {% if recommendation.status == "normal"
+                                              and recommendation.poliklinik %}
+
+                                            <div class="polyclinic-box">
+
+                                                <p>
+                                                    Poliklinik RS Stella Maris
+                                                </p>
+
+                                                <h4>
+                                                    {{ recommendation.poliklinik }}
+                                                </h4>
+
+                                                <a
+                                                    href="{{ url_for(
+                                                        'dokter',
+                                                        poliklinik=recommendation.poliklinik
+                                                    ) }}"
+                                                    class="doctor-button"
+                                                >
+                                                    Lihat Daftar Dokter →
+                                                </a>
+
+                                            </div>
+
+                                        {% else %}
+
+                                            <div class="unmapped">
+                                                Mapping poliklinik untuk
+                                                spesialisasi ini belum tersedia.
+                                                Silakan periksa
+                                                mapping_speciality.csv.
+                                            </div>
+
+                                        {% endif %}
+
+                                    {% endif %}
+
+                                    {% if recommendation.confidence is not none %}
+
+                                        <p class="confidence">
+                                            Skor keluaran model:
+                                            <strong>
+                                                {{ "%.2f"|format(
+                                                    recommendation.confidence
+                                                ) }}%
+                                            </strong>
+                                        </p>
+
+                                    {% elif not is_emergency %}
+
+                                        <p class="confidence">
+                                            Rekomendasi berbasis aturan
+                                            kata kunci, bukan probabilitas model.
+                                        </p>
+
+                                    {% endif %}
+
+                                </div>
+
+                                <div class="reason">
+
+                                    <h4>
+                                        ⓘ Alasan Rekomendasi
+                                    </h4>
+
+                                    {% if is_emergency %}
+
+                                        <p>
+                                            Keluhan ini diklasifikasikan
+                                            sebagai kategori Emergency
+                                            oleh model. Sistem tidak
+                                            mengarahkan keluhan ini ke
+                                            poliklinik spesialis.
+                                        </p>
+
+                                    {% else %}
+
+                                        <p>
+                                            Spesialisasi ini diproses
+                                            secara terpisah berdasarkan
+                                            keluhan yang tercantum pada
+                                            kartu ini.
+                                        </p>
+
+                                    {% endif %}
+
+                                </div>
+
+                            </article>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% elif result.emergency_predictions %}
 
                     <h2 class="section-heading">
                         ⚠ Perhatian: Kategori Emergency
@@ -503,137 +695,10 @@
 
                 {% else %}
 
-                    <h2 class="section-heading">
-                        ✧ Rekomendasi untuk Setiap Keluhan
-                    </h2>
-
-                    <div class="recommendation-list">
-
-                        {% for recommendation in result.recommendations %}
-
-                        <article class="primary-card">
-
-                            <div class="specialty-icon">
-                                ⚕
-                            </div>
-
-                            <div class="primary-info">
-
-                                <span class="recommendation-number">
-                                    Keluhan {{ loop.index }}
-                                </span>
-
-                                <div class="complaint-origin">
-
-                                    <strong>Keluhan pasien</strong>
-
-                                    <p>
-                                        {{ recommendation.complaint }}
-                                    </p>
-
-                                    <div class="translation-note">
-                                        <strong>Terjemahan:</strong>
-                                        {{ recommendation.translated_complaint }}
-                                    </div>
-
-                                </div>
-
-                                <div class="small-label">
-                                    Rekomendasi spesialisasi
-                                </div>
-
-                                <h3>
-                                    {{ recommendation.specialty
-                                       | replace("_", " ")
-                                       | title }}
-                                </h3>
-
-                                {% if recommendation.status == "normal"
-                                      and recommendation.poliklinik %}
-
-                                    <div class="polyclinic-box">
-
-                                        <p>
-                                            Poliklinik RS Stella Maris
-                                        </p>
-
-                                        <h4>
-                                            {{ recommendation.poliklinik }}
-                                        </h4>
-
-                                        <a
-                                            href="{{ url_for(
-                                                'dokter',
-                                                poliklinik=recommendation.poliklinik
-                                            ) }}"
-                                            class="doctor-button"
-                                        >
-                                            Lihat Daftar Dokter →
-                                        </a>
-
-                                    </div>
-
-                                {% else %}
-
-                                    <div class="unmapped">
-                                        Mapping poliklinik untuk spesialisasi
-                                        ini belum tersedia. Silakan periksa
-                                        mapping_speciality.csv.
-                                    </div>
-
-                                {% endif %}
-
-                                {% if recommendation.confidence is not none %}
-
-                                    <p class="confidence">
-                                        Skor keluaran model:
-                                        <strong>
-                                            {{ "%.2f"|format(
-                                                recommendation.confidence
-                                            ) }}%
-                                        </strong>
-                                    </p>
-
-                                {% else %}
-
-                                    <p class="confidence">
-                                        Rekomendasi berbasis aturan kata kunci,
-                                        bukan probabilitas model.
-                                    </p>
-
-                                {% endif %}
-
-                            </div>
-
-                            <div class="reason">
-
-                                <h4>
-                                    ⓘ Alasan Rekomendasi
-                                </h4>
-
-                                <p>
-                                    Spesialisasi ini diproses secara terpisah
-                                    berdasarkan keluhan yang tercantum pada
-                                    kartu ini.
-                                </p>
-
-                            </div>
-
-                        </article>
-
-                        {% endfor %}
-
+                    <div class="error">
+                        Tidak ditemukan rekomendasi spesialisasi
+                        untuk keluhan ini.
                     </div>
-
-                    {% if result.emergency_detected %}
-
-                    <div class="state-box emergency" style="margin-top:20px;">
-                        Salah satu keluhan terdeteksi sebagai kategori
-                        emergency oleh model. Jika gejala berat atau
-                        memburuk, segera cari pertolongan medis di IGD.
-                    </div>
-
-                    {% endif %}
 
                 {% endif %}
 
