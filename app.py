@@ -284,7 +284,6 @@ def translate_to_english(text):
 
     print("Bahasa terdeteksi:", language)
 
-    # Input bahasa Inggris tidak diterjemahkan ulang.
     if language == "en":
         return text
 
@@ -333,7 +332,6 @@ def preprocess_text(text):
 
     try:
         tokens = word_tokenize(text)
-
     except LookupError:
         tokens = text.split()
 
@@ -370,7 +368,17 @@ def split_complaints(complaint):
         complaint
     )
 
-    parts = complaint.split("|")
+    # Pisahkan berdasarkan kata penghubung.
+    conjunction_pattern = (
+        r"\s+(?:dan|serta|kemudian|sedangkan|"
+        r"and|also|but|while|whereas)\s+"
+    )
+
+    parts = re.split(
+        conjunction_pattern,
+        complaint,
+        flags=re.IGNORECASE
+    )
 
     valid_parts = []
 
@@ -573,6 +581,7 @@ def predict_one_complaint(complaint, translated_complaint):
             "specialty": str(
                 label_encoder.classes_[class_index]
             ).strip().lower(),
+
             "confidence": float(
                 probabilities[class_index] * 100
             )
@@ -596,9 +605,11 @@ def predict_one_complaint(complaint, translated_complaint):
     print("Top 3 prediksi:")
 
     for item in top_predictions:
+
         print(
             item["specialty"],
-            ":", f'{item["confidence"]:.2f}%'
+            ":",
+            f'{item["confidence"]:.2f}%'
         )
 
     print("Prediksi utama:", specialty)
@@ -766,6 +777,7 @@ def process_all_complaints(complaint):
 def index():
 
     if request.method == "GET":
+
         return render_template("index.html")
 
     complaint = request.form.get(
